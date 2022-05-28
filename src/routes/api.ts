@@ -1,13 +1,22 @@
 import express, { Router, Request, Response } from "express";
+import { UserController } from "../controller/user-controller";
 
-const router: Router = express.Router();
+class ApiRoutes {
+  private router!: Router;
+  private userController!: UserController;
 
-router.get("/subscribe", (req: Request, res: Response) => {
-  res.status(200).send({ res: "Subscribed" });
-});
+  constructor() {
+    this.userController = new UserController();
+    this.router = express.Router();
 
-router.get("/unsubscribe", (req: Request, res: Response) => {
-  res.status(200).send({ res: "Unsubscribed" });
-});
+    this.router.post("/subscribe", this.userController.subscribeUser);
 
-export { router };
+    this.router.post("/unsubscribe", this.userController.unsubscribeUser);
+  }
+
+  getRoutes() {
+    return this.router;
+  }
+}
+
+export { ApiRoutes };

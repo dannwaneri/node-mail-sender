@@ -16,6 +16,7 @@ export class user1653763056540 implements MigrationInterface {
           {
             name: "email",
             type: "varchar(320)",
+            isUnique: true,
           },
         ],
       }),

@@ -19,7 +19,7 @@ class App {
     });
   }
 
-  public shutdownApp() {
+  public shutdownApp(): void {
     this.server.close();
   }
 }

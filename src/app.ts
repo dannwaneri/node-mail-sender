@@ -2,7 +2,7 @@ import express, { Application } from "express";
 import { Server } from "http";
 import "dotenv/config";
 
-import { AppDataSource } from "./database/data-source";
+import { AppDataSource } from "./data-source";
 
 class App {
   private app!: Application;

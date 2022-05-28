@@ -2,6 +2,8 @@ import express, { Application } from "express";
 import { Server } from "http";
 import "dotenv/config";
 
+import { AppDataSource } from "./database/data-source";
+
 class App {
   private app!: Application;
   private port!: Number;
@@ -13,6 +15,8 @@ class App {
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+
+    AppDataSource.initialize();
 
     this.server = this.app.listen(this.port, (): void => {
       console.log(`The app is listening on port ${this.port}`);

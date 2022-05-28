@@ -3,6 +3,7 @@ import { Server } from "http";
 import "dotenv/config";
 
 import { AppDataSource } from "./data-source";
+import { router } from "./routes";
 
 class App {
   private app!: Application;
@@ -15,6 +16,7 @@ class App {
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+    this.app.use(router);
 
     AppDataSource.initialize();
 

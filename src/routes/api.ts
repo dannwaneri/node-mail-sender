@@ -9,9 +9,14 @@ class ApiRoutes {
     this.userController = new UserController();
     this.router = express.Router();
 
-    this.router.post("/subscribe", this.userController.subscribeUser);
-
-    this.router.post("/unsubscribe", this.userController.unsubscribeUser);
+    this.router.post(
+      "/subscribe",
+      this.userController.subscribeUser.bind(this.userController)
+    );
+    this.router.post(
+      "/unsubscribe",
+      this.userController.unsubscribeUser.bind(this.userController)
+    );
   }
 
   getRoutes() {

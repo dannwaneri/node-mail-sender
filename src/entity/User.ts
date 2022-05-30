@@ -7,4 +7,7 @@ export class User extends BaseEntity {
 
   @Column("varchar", { length: 320, unique: true })
   email!: string;
+
+  @Column("varchar", { name: "unsubscribe-token", length: 512, nullable: true })
+  unsubscribeToken!: string;
 }

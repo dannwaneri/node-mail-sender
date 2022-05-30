@@ -48,18 +48,22 @@ class UserController {
 
   public async unsubscribeUser(req: Request, res: Response) {
     const { token } = req.query;
-    try {
-      const user = await User.findOneByOrFail({
-        unsubscribeToken: String(token),
-      });
-      if (user) {
-        await user.remove();
-        res.status(200).send("User unsubscribed!");
-      } else {
-        res.status(400).send("User not found!");
+    if (token) {
+      try {
+        const user = await User.findOneByOrFail({
+          unsubscribeToken: String(token),
+        });
+        if (user) {
+          await user.remove();
+          res.status(200).send("User unsubscribed!");
+        } else {
+          res.status(400).send("User not found!");
+        }
+      } catch (e) {
+        res.status(400).send("User unsubscribe error!");
       }
-    } catch (e) {
-      res.status(400).send("User unsubscribe error!");
+    } else {
+      res.status(400).send("Token not found!");
     }
   }
 }

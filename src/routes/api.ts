@@ -13,7 +13,7 @@ class ApiRoutes {
       "/subscribe",
       this.userController.subscribeUser.bind(this.userController)
     );
-    this.router.post(
+    this.router.get(
       "/unsubscribe",
       this.userController.unsubscribeUser.bind(this.userController)
     );
